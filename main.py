@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import hashlib
+
 
 link = 'https://raw.githubusercontent.com/mledoze/countries/master/countries.json'
 
