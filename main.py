@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 link = 'https://raw.githubusercontent.com/mledoze/countries/master/countries.json'
 
@@ -22,10 +23,16 @@ class SearchEngine:
             return countries_data
 
     def get_wiki_links(self, countries_data):
-       for item in countries_data:
+
+        if os.path.isfile('coutries_wiki_links.txt') == True:
+            os.remove('coutries_wiki_links.txt')
+        else:
+            pass
+        for item in countries_data:
             country = item['name']['official']
             with open('coutries_wiki_links.txt', 'a') as file:
-                file.write(f'{country} - "https://en.wikipedia.org/wiki/{country}""\n"')
+                file.write(f'{country} - "https://en.wikipedia.org/wiki/{country}", \n')
+
 
     def main(self):
         self.get_wiki_links(self.get_countries_data(self.download_file(link)))
